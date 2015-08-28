@@ -71,7 +71,7 @@ var grabRssFeed = function (widget) {
                                     new_entries.push(entry);
                                 }
                             }
-                            widget.modify({feedEntries:new_entries.concat(widget.feedEntries).slice(0,10)});
+                            widget.modify({feedEntries:new_entries.concat(widget.feedEntries).slice(0,25)});
 
                             if(!widget.feedInfo.title){
                                 widget.modify({feedInfo:{

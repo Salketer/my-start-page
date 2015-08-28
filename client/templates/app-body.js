@@ -43,6 +43,9 @@ Template.appBody.helpers({
             }
         }
     },
+    user_is_owner:function(){
+        return Dashboards.find({_id:Session.get(CURRENT_DASHBOARD),ownerid:Meteor.userId()}).count()>0;
+    },
     dashboard_view:function(){
         return Session.get(CURRENT_DASHBOARD)!==false;
     }

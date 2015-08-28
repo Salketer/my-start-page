@@ -11,20 +11,21 @@ if (Meteor.isClient) {
             if (typeof dashboards !== 'undefined') {
                 dashboards.stop();
             }
+
+            if(Dashboards.find(Session.get(CURRENT_DASHBOARD)).count()<1){
+                FlowRouter.go('/');
+            }
+
         }
     });
 
     Template.body.rendered = function () {
         Tracker.autorun(function () {
             var dashboard = Dashboards.find({_id: Session.get(CURRENT_DASHBOARD)}).fetch();
-            if (dashboard[0]) {
-                if (Images.find().count() > 0 && Images.findOne(dashboard[0].background)) {
-                    $('body').css('background-image', 'url(' + Images.findOne(dashboard[0].background).url() + ')');
-                } else {
-                    $('body').css('background-image', '');
-                }
+            if (dashboard[0] && Images.find().count() > 0 && Images.findOne(dashboard[0].background)) {
+                $('body').css('background-image', 'url(' + Images.findOne(dashboard[0].background).url() + ')');
             } else {
-
+                $('body').css('background-image', '');
             }
         });
     };

@@ -4,10 +4,15 @@
 	.jumbotron{
 		background:@brand-primary url('images/grid_texture.png') 50% 50%  no-repeat;
 		background-size:cover;
-		text-shadow: black 0.1em 0.1em 0.2em;
+		text-shadow: #000 0.1em 0.1em 0.2em;
 		color:white;
 		.lead{
 			margin-top:40px;
+		}
+		.logo{
+			fill:white;
+			-webkit-filter: drop-shadow( 0.1em 0.1em 0.2em #000 );
+			filter: drop-shadow( 0.1em 0.1em 0.2em #000 ); /* Same syntax as box-shadow */
 		}
 	}
 	.section{

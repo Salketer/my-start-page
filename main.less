@@ -1,3 +1,6 @@
+@import "client/lib/bootstrap/custom.bootstrap.import.less";
+@import "client/styles/less-elements.import.less";
+
 body{
 	//overflow-y:scroll;
 	background-position:center;
@@ -21,4 +24,14 @@ body,html{
 }
 .private-bg{
 	background-color:lighten(@private-color,20%);
+}
+
+.brand-font{
+	font-family: 'Lobster', cursive;
+}
+.logo{
+	.jumbotron h1 &{
+		height:@jumbotron-heading-font-size;
+		vertical-align: sub;
+	}
 }

@@ -1,7 +1,7 @@
 <template name="appBody">
     <div class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand brand-font" href="{{absoluteUrl}}">Gridfully</a>
+            <a class="navbar-brand brand-font" href="{{absoluteUrl}}">{{> logo}} Gridfully</a>
         </div>
         <div class="navbar-collapse collapse">
 
@@ -21,7 +21,7 @@
                         {{/if}}
                     </li>
                     {{/if}}
-                    {{#if currentUser}}
+                    {{#if user_is_owner}}
                         <li class="{{#if in_modification_state}}active{{/if}}">
                             <a href="#" id="modification_toggle"
                                title="Configure"><i class="fa fa-gears"></i></a>
