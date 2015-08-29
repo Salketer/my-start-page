@@ -9,8 +9,11 @@ Accounts.onCreateUser(function(options,userDoc){
             userDoc.username = userDoc.services.facebook.name;
         }
     }
-    //TODO add google username capture
-
+    if(userDoc.services.google){
+        if(userDoc.services.google.name){
+            userDoc.username = userDoc.services.google.name;
+        }
+    }
     //TODO add twitter username capture
 
     return userDoc;
