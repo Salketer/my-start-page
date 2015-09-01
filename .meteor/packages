@@ -7,7 +7,6 @@
 meteor-platform
 accounts-password
 accounts-facebook
-accounts-twitter
 accounts-google
 ian:accounts-ui-bootstrap-3
 splendido:accounts-meld

@@ -14,7 +14,34 @@ Accounts.onCreateUser(function(options,userDoc){
             userDoc.username = userDoc.services.google.name;
         }
     }
-    //TODO add twitter username capture
+
+    userDoc.profile = {name:userDoc.username};
 
     return userDoc;
 });
+
+Accounts.config({
+    sendVerificationEmail:true
+});
+Accounts.emailTemplates.siteName = "Gridfully";
+Accounts.emailTemplates.from = "no-reply@gridfully.net";
+
+
+Accounts.emailTemplates.verifyEmail.subject = function (user) {
+    return "Welcome to Gridfully, " + user.profile.name;
+};
+Accounts.emailTemplates.verifyEmail.text = function (user, url) {
+    return "Hello "+user.profile.name+",\n\n"
+        + " To activate your account, simply click the link below:\n\n"
+        + url + "\n\n"
+        + "Thank you and see you soon on Gridfully";
+};
+//Accounts.emailTemplates.resetPassword.subject = function (user) {
+//    return "Welcome to Awesome Town, " + user.profile.name;
+//};
+//Accounts.emailTemplates.resetPassword.text = function (user, url) {
+//    return "Hello "+user.profile.name+",\n\n"
+//        + " To activate your account, simply click the link below:\n\n"
+//        + url + "\n\n"
+//        + "Thank you and see you soon on Gridfully";
+//};
