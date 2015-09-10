@@ -19,6 +19,7 @@ if (Meteor.isClient) {
         }
     });
 
+    //TODO use Template.autorun
     Template.body.rendered = function () {
         Tracker.autorun(function () {
             var dashboard = Dashboards.find({_id: Session.get(CURRENT_DASHBOARD)}).fetch();

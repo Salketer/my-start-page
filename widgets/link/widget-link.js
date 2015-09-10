@@ -46,7 +46,7 @@ Widgets.register('link', {
             autoform: {
                 afFieldInput: {
                     type: 'fileUpload',
-                    collection: 'Images',
+                    available_widgets: 'Images',
                     accept: 'image/*'
                 }
             }

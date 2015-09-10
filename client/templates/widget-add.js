@@ -1,6 +1,6 @@
 Template.widgetAdd.helpers({
     widgets: function () {
-        return Widgets.collection;
+        return Widgets.available_widgets;
     }
 });
 

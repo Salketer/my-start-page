@@ -11,7 +11,7 @@ Widgets.register('simple-picture', {
             autoform: {
                 afFieldInput: {
                     type: 'fileUpload',
-                    collection: 'Images',
+                    available_widgets: 'Images',
                     accept: 'image/*'
                 }
             }
