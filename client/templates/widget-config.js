@@ -25,4 +25,4 @@ Template.widgetConfig.events({
             Widgets_Collection.remove(this._id);
         }
     }
-})
+});

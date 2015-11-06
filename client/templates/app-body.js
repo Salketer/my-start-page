@@ -5,17 +5,32 @@ CURRENT_DASHBOARD = 'dashboard_displayed';
 Template.appBody.helpers({
     gridname: function () {
         var dashboard = Dashboards.findOne(Session.get(CURRENT_DASHBOARD));
-        if(!dashboard){
-           return 'Select a grid';
+        if (!dashboard) {
+            return 'Select a grid';
         }
         return dashboard.name;
     },
-    hasGrids:function(){
+    hasGrids: function () {
         var dashboard = Dashboards.findOne();
-        return dashboard?true:false;
+        return dashboard ? true : false;
     },
     user_dashboards: function () {
-        return Dashboards.find({ownerid: Meteor.userId()});
+        var dashboards = Dashboards.find({ownerid: Meteor.userId()});
+        return dashboards;
+    },
+    label: function(){
+        label = {};
+        if(this.public && this.ownerid === Meteor.userId()){
+            label.class = 'public-text';
+            label.text = 'Public';
+        }else if(this.public && this.ownerid !== Meteor.userId()){
+            label.class = 'favorite-text';
+            label.text = 'Favorite';
+        }else{
+            label.class = 'private-text';
+            label.text = 'Private';
+        }
+        return label;
     },
     dashboard_public: function () {
         if (Dashboards.find(Session.get(CURRENT_DASHBOARD)).count() > 0) {
@@ -43,11 +58,11 @@ Template.appBody.helpers({
             }
         }
     },
-    user_is_owner:function(){
-        return Dashboards.find({_id:Session.get(CURRENT_DASHBOARD),ownerid:Meteor.userId()}).count()>0;
+    user_is_owner: function () {
+        return Dashboards.find({_id: Session.get(CURRENT_DASHBOARD), ownerid: Meteor.userId()}).count() > 0;
     },
-    dashboard_view:function(){
-        return Session.get(CURRENT_DASHBOARD)!==false;
+    dashboard_view: function () {
+        return Session.get(CURRENT_DASHBOARD) !== false;
     }
 
 });
@@ -66,6 +81,17 @@ Template.appBody.events({
     'click #toggle_share': function () {
         var $modal = $('#shareToggleModal');
         $modal.modal('show');
+    },
+    'click #add_grid': function () {
+        Dashboards.insert({
+            name: 'My new grid',
+            ownerid: Meteor.userId()
+        }, function new_grid_callback(error, _id) {
+            if (!error) {
+                FlowRouter.go('/g/' + _id);
+                $('#backgroundConfigModal').modal('show');
+            }
+        });
     }
 });
 
@@ -78,6 +104,6 @@ Template.registerHelper('momentFromNow', function (time) {
 Template.registerHelper('formattedDate', function (time) {
     return moment(time).format('LLLL');
 });
-Template.registerHelper('absoluteUrl',function(path){
+Template.registerHelper('absoluteUrl', function (path) {
     return Meteor.absoluteUrl(path);
 });

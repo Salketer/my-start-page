@@ -4,7 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 accounts-password
 accounts-facebook
 accounts-google
@@ -14,6 +13,7 @@ nemo64:bootstrap
 less
 salketer:autoform-bs-colorpicker
 salketer:autoform-bs-iconpicker
+salketer:autoform-pictureselect
 cfs:standard-packages
 cfs:gridfs
 fortawesome:fontawesome
@@ -26,5 +26,18 @@ appcache
 momentjs:moment
 kadira:flow-router
 aldeed:autoform
-yogiben:autoform-file
 lukemadera:autoform-googleplace
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check

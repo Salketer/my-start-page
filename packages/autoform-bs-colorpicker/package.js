@@ -17,11 +17,11 @@ Package.onUse(function(api) {
 	api.use('aldeed:autoform');
 	api.addFiles([
 	              "lib/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js",
-	              "lib/bootstrap-colorpicker/dist/img/bootstrap-colorpicker/alpha.png",
-	              "lib/bootstrap-colorpicker/dist/img/bootstrap-colorpicker/hue.png",
-	              "lib/bootstrap-colorpicker/dist/img/bootstrap-colorpicker/saturation.png",
 	              'autoform-bs-colorpicker.html',
 	              'autoform-bs-colorpicker.js',
 	              'path-override.css'
 	            ], 'client');
+    api.addAssets(["lib/bootstrap-colorpicker/dist/img/bootstrap-colorpicker/alpha.png",
+        "lib/bootstrap-colorpicker/dist/img/bootstrap-colorpicker/hue.png",
+        "lib/bootstrap-colorpicker/dist/img/bootstrap-colorpicker/saturation.png"], 'client');
 });

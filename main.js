@@ -25,6 +25,8 @@ if (Meteor.isClient) {
             var dashboard = Dashboards.find({_id: Session.get(CURRENT_DASHBOARD)}).fetch();
             if (dashboard[0] && Images.find().count() > 0 && Images.findOne(dashboard[0].background)) {
                 $('body').css('background-image', 'url(' + Images.findOne(dashboard[0].background).url() + ')');
+            } else if(dashboard[0] && dashboard[0].select_background){
+                $('body').css('background-image', 'url(' + dashboard[0].select_background + ')');
             } else {
                 $('body').css('background-image', '');
             }

@@ -5,37 +5,52 @@
         </div>
         <div class="navbar-collapse collapse">
 
-                <ul class="nav navbar-nav">
-                    {{#if hasGrids}}
+            <ul class="nav navbar-nav">
+                {{#if hasGrids}}
                     <li {{gridlist_attr}}>
                         <p {{gridname_attr}}>{{gridname}} {{#if currentUser}}<span class="caret"></span>{{/if}}</p>
                         {{#if currentUser}}
                             <ul class="dropdown-menu">
                                 {{#each user_dashboards}}
-                                    <li><a href="/g/{{_id}}">{{name}}</a></li>
+                                    <li><a href="/g/{{_id}}"><i class="fa fa-share-alt {{label.class}}"
+                                                                title="{{label.text}}"></i> {{name}}
+                                    </a></li>
                                 {{/each}}
+                                {{#if favorites}}
+                                    {{#each user_dashboards}}
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="/g/{{_id}}"><i class="fa fa-star-o {{label.class}}"
+                                                                    title="{{label.text}}"></i> {{name}}
+                                        </a></li>
+                                    {{/each}}
+                                {{/if}}
+
+
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Create New Dashboard</a></li>
+                                <li><a role="button" id="add_grid" title="Create new grid">Create a new grid</a></li>
 
                             </ul>
                         {{/if}}
                     </li>
-                    {{/if}}
-                    {{#if user_is_owner}}
-                        <li class="{{#if in_modification_state}}active{{/if}}">
-                            <a href="#" id="modification_toggle"
-                               title="Configure"><i class="fa fa-gears"></i></a>
-                        </li>
-                        {{#if in_modification_state}}
-                            <li><p class="navbar-text btn-link" role="button" id="add_widget" title="Add widget"><i
-                                    class="fa fa-plus"></i></p></li>
-                            <li><p class="navbar-text btn-link" role="button" id="change_background" title="Change background"><i
-                                    class="fa fa-photo"></i></p></li>
-                            <li><p class="navbar-text btn-link {{#if dashboard_public}}public-text{{else}}private-text{{/if}}" role="button" id="toggle_share" title="Share"><i
+                {{/if}}
+                {{#if user_is_owner}}
+                    <li class="{{#if in_modification_state}}active{{/if}}">
+                        <a href="#" id="modification_toggle"
+                           title="Configure"><i class="fa fa-gears"></i></a>
+                    </li>
+                    {{#if in_modification_state}}
+                        <li><p class="navbar-text btn-link" role="button" id="add_widget" title="Add widget"><i
+                                class="fa fa-plus"></i></p></li>
+                        <li><p class="navbar-text btn-link" role="button" id="change_background"
+                               title="Change background"><i
+                                class="fa fa-photo"></i></p></li>
+                        <li>
+                            <p class="navbar-text btn-link {{#if dashboard_public}}public-text{{else}}private-text{{/if}}"
+                               role="button" id="toggle_share" title="Share"><i
                                     class="fa fa-share-alt"></i></p></li>
-                        {{/if}}
                     {{/if}}
-                </ul>
+                {{/if}}
+            </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 {{> loginButtons}}
@@ -52,6 +67,6 @@
 
     {{> widgetConfig}}
     {{> widgetAdd}}
-    {{> backgroundConfig}}
+    {{> dashboardConfig}}
     {{> shareModal}}
 </template>

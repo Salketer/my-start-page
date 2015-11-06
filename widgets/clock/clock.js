@@ -40,7 +40,8 @@ Widgets.register('clock', {
         titre: {
             type: String,
             label: 'Title',
-            max: 400
+            max: 400,
+            optional: true
         },
         clock_type: {
             type: String,
@@ -117,14 +118,6 @@ if (Meteor.isClient) {
                 }, other_params: 'libraries=places'
             });
         }
-        //if(this.data.data.target_place) {
-        //    Meteor.http.get('https://maps.googleapis.com/maps/api/timezone/json?location='+this.data.data.target_place.lat+','+this.data.data.target_place.lng+'&timestamp='+(Math.round((new Date().getTime())/1000)).toString(),
-        //        function(error,response){
-        //            if(response.data.timeZoneId != null){
-        //                Widgets_Collection.findOne(self.data._id).modify({time_offset:response.data.dstOffset+response.data.rawOffset});
-        //        }
-        //    });
-        //}
         var self = this;
         var r = function (el, deg) {
             el.setAttribute('transform', 'rotate(' + deg + ' 50 50)')
@@ -132,7 +125,12 @@ if (Meteor.isClient) {
         var clock = function () {
             var widget = Widgets_Collection.findOne(self.data._id);
             var d = new Date();
-            var offset = widget.time_offset + d.getTimezoneOffset()*60;
+            if(widget.time_offset!=0){
+                var offset = widget.time_offset + d.getTimezoneOffset()*60;
+            }else{
+                var offset = 0;
+            }
+
             d.setTime(d.getTime() + offset*1000);
             if (widget.data.clock_type == 'digital') {
                 var text = self.$('.time_text');

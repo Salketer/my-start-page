@@ -7,7 +7,7 @@ AutoForm.hooks({
 			return false;
 		}
 	},
-	backgroundConfiguration : {
+	dashboardConfiguration : {
 		onSubmit : function(insertDoc, updateDoc, currentDoc) {
 			Dashboards.update(this.docId,updateDoc);
 			this.done();
